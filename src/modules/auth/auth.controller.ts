@@ -6,6 +6,8 @@ import { ResfreshTokenDto } from './dto/refresh-token.dto';
 import { Public } from 'src/common/decorators/public.decorator';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { LoginDto } from './dto/login.dto';
+import { ForgotPasswordDto } from './dto/forgot-password.dto';
+import { ResetPasswordDto } from './dto/reset-password.dto';
 
 @ApiTags('Authentication')
 @Controller('auth')
@@ -48,5 +50,24 @@ export class AuthController {
     @ApiBody({ type: ResfreshTokenDto })
     refresh(@Body() dto: ResfreshTokenDto) {
         return this.authService.refreshTokens(dto.refresh_token)
+    }
+
+    @Public()
+    @Post('forgot-password')
+    @ApiOperation({ summary: 'Solicitar recuperación de contraseña' })
+    @ApiResponse({ status: 200, description: 'Email enviado si el usuario existe' })
+    @HttpCode(HttpStatus.OK)
+    @ApiBody({ type: ForgotPasswordDto })
+    forgotPassword(@Body() dto: ForgotPasswordDto) {
+        return this.authService.sendResetPasswordEmail(dto.email);
+    }
+
+    @Public()
+    @Post('reset-password')
+    @ApiOperation({ summary: 'Restablecer contraseña' })
+    @ApiResponse({ status: 200, description: 'Contraseña actualizada' })
+    @ApiBody({ type: ResetPasswordDto })
+    resetPassword(@Body() dto: ResetPasswordDto){
+        return this.authService.resetPassword(dto.token, dto.newPassword);
     }
 }

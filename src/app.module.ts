@@ -7,6 +7,7 @@ import configuration from 'src/config/configuration';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { RolesGuard } from './common/guards/roles.guard';
+import { MailerModule } from './modules/mailer/mailer.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { RolesGuard } from './common/guards/roles.guard';
     }),
     AuthModule,
     UserModule,
+    MailerModule,
   ],
   providers: [
     {
