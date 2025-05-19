@@ -8,6 +8,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { RolesGuard } from './common/guards/roles.guard';
 import { MailerModule } from './modules/mailer/mailer.module';
+import { ProductsModule } from './modules/products/products.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { MailerModule } from './modules/mailer/mailer.module';
     AuthModule,
     UserModule,
     MailerModule,
+    ProductsModule,
   ],
   providers: [
     {
