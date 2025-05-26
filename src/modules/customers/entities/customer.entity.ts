@@ -1,14 +1,11 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne } from "typeorm";
 import { IsEmail } from "class-validator";
+import { IdentificationType } from "src/common/enums/identificationType.enum";
+import { Seller } from "src/modules/sellers/entities/seller.entity";
 
 export enum CustomerType {
     INDIVIDUAL = "individual",
     COMPANY = "company",
-}
-
-export enum IdentificationType {
-    CC = "CC",
-    NIT = "NIT",
 }
 
 @Entity('customers')
@@ -60,8 +57,8 @@ export class Customer {
     @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;
 
-    // @ManyToOne(() => Seller, seller => seller.customers)
-    // responsible: Seller;
+    @ManyToOne(() => Seller, seller => seller.customers, { nullable: false})
+    responsible: Seller;
 
     @Column({ default: true })
     status: boolean;

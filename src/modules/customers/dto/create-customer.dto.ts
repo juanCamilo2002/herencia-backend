@@ -1,6 +1,7 @@
-import { IsEmail, IsEnum, IsNotEmpty, IsString, ValidateIf } from "class-validator";
-import { CustomerType, IdentificationType } from "../entities/customer.entity";
+import { IsEmail, IsEnum, IsNotEmpty, IsString, ValidateIf, IsUUID } from "class-validator";
+import { CustomerType } from "../entities/customer.entity";
 import { ApiProperty } from "@nestjs/swagger";
+import { IdentificationType } from "src/common/enums/identificationType.enum";
 
 export class CreateCustomerDto {
     @ApiProperty({ enum: CustomerType, example: CustomerType.INDIVIDUAL })
@@ -49,4 +50,11 @@ export class CreateCustomerDto {
     @IsNotEmpty()
     @IsString()
     city: string;
+
+    @ApiProperty({ 
+        example: '123e4567-e89b-12d3-a456-426614174000',
+        description: 'ID del vendedor responsable'
+     })
+    @IsUUID()
+    responsible: string;
 }
