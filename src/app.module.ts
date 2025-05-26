@@ -10,6 +10,7 @@ import { RolesGuard } from './common/guards/roles.guard';
 import { MailerModule } from './modules/mailer/mailer.module';
 import { ProductsModule } from './modules/products/products.module';
 import { CustomersModule } from './modules/customers/customers.module';
+import { SellersModule } from './modules/sellers/sellers.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { CustomersModule } from './modules/customers/customers.module';
     MailerModule,
     ProductsModule,
     CustomersModule,
+    SellersModule,
   ],
   providers: [
     {
