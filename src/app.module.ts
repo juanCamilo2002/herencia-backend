@@ -11,6 +11,7 @@ import { MailerModule } from './modules/mailer/mailer.module';
 import { ProductsModule } from './modules/products/products.module';
 import { CustomersModule } from './modules/customers/customers.module';
 import { SellersModule } from './modules/sellers/sellers.module';
+import { SalesModule } from './modules/sales/sales.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { SellersModule } from './modules/sellers/sellers.module';
     ProductsModule,
     CustomersModule,
     SellersModule,
+    SalesModule,
   ],
   providers: [
     {
